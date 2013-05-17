@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace mssupport
 {
@@ -7,22 +8,33 @@ namespace mssupport
         static void Main(string[] args)
         {
             monitor m1 = new monitor();
+            scan s1 = new scan();
+            dbwork db = new dbwork();
+
+            string dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
+
+            int scaninterval = 3000;
+
             if (args.Length == 0)
             {
                 m1.checknow();
-                return;
+                while (1 == 1) 
+                {
+                    Console.Write("q");
+                    s1.scannow();
+                    Thread.Sleep(scaninterval);
+                }
             }
             else
             {
                 if (args[0] == "scan")
                 {
-                    scan s1 = new scan(); s1.scannow(); return;
+                     s1.scannow(); return;
                 }
                 if (args[0] == "del")
                 {
-                    dbwork db = new dbwork();
-                    string dbaddress = db.getdbaddress("config.txt");
                     db.droptdforscandb(dbaddress, "forscan");
+                    db.setdbparam("config.txt", 1, "scanstopnow");
                     return;
                 }
                 if (args[0] == "check")

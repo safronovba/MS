@@ -12,13 +12,14 @@ namespace mssupport
     {
         public void scannow()
         {
-            string dbaddress = "Z:\\hosts.accdb";
+
+            string dbaddress = "E:\\hosts.accdb";
             dbwork db = new dbwork();
             icmp temp = new icmp();
             string tempip = null;
 
-            dbaddress = db.getdbaddress("config.txt");
-
+            dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
+            db.setdbparam("config.txt", 1, "scanworknow");
            
                 int lastid = db.findlastkod(dbaddress, "hosts");
                 int tempkod = 0;

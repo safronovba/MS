@@ -14,7 +14,7 @@ namespace mssupport
     {
         public void checknow()
         {
-            string dbaddress = "Z:\\hosts.accdb";
+            string dbaddress = "E:\\hosts.accdb";
             Process MyProc = new Process();
             icmp icmp = new icmp();
             dbwork db = new dbwork();
@@ -24,16 +24,9 @@ namespace mssupport
             int tempkod = 0, n = 0;
             int scanint;
 
-            dbaddress = db.getdbaddress("config.txt");
+            dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
 
-            if (db.tableexist(dbaddress, "forscan"))
-            {
-                MyProc.StartInfo.FileName = "MSservice.exe";
-                MyProc.StartInfo.Arguments = "scan";
-                MyProc.Start();
-            }
-
-            while (n < 3)
+            while (true)
             {
                 OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip,scanint,nowstate,lasterror,lastsucces,lasttime FROM hosts");
                 try
@@ -76,14 +69,19 @@ namespace mssupport
                 }
                 catch (Exception ex) { Console.Write("Ошибка tempread.Read()\n" + ex); Console.ReadKey(); return; }
                 n++;
-                Console.WriteLine("Sleep for 10 seconds. | " + n);
-                Thread.Sleep(10000);
+                if (((n % 3) == 0))
+                {
+                    if (db.getdbparam("config.txt").GetValue(1).ToString() != "scanworknow")
+                    {
+                        MyProc.StartInfo.FileName = "MSservice.exe";
+                        MyProc.StartInfo.Arguments = "scan";
+                        MyProc.Start();
+                        Console.WriteLine ("New hosts found. Run scan");
+                    }
+                }
+                Console.WriteLine("\nSleep for 10 seconds. | " + n +"\n");
+                Thread.Sleep(3000);
             }
-
-            MyProc.StartInfo.FileName = "MSservice.exe";
-            MyProc.StartInfo.Arguments = "check";
-            MyProc.Start();
-
         }
     }
 }

@@ -4,26 +4,54 @@ using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace mssupport
 {
     class dbwork
     {
-        public string getdbaddress(string filename)
+        public string[] getdbparam(string filename)
         {
             try
             {
-                StreamReader s = File.OpenText(filename);
-                string read = null;
-                while ((read = s.ReadLine()) != null)
+                StreamReader reader = File.OpenText(filename);
+                string[] exit = new string[5];
+                int i = 0;
+
+                while ((exit[i] = reader.ReadLine()) != null)
                 {
-                    return read;
+                    i++;
                 }
-                s.Close();
-                return null;
+                reader.Close();
+                return exit;
             }
             catch (Exception ex) { Console.Write(ex); return null; }
+        }
+
+        public void setdbparam(string filename,int i, string param)
+        {
+            try
+            {
+                StreamReader reader = new StreamReader(filename);
+                string content=null, temp=null;
+
+                for (int j = 0; j != i+1; j++)
+                {
+                    temp = reader.ReadLine();
+                    content = content+ temp;
+                    content = content + '\n';
+                }
+
+                reader.Close();
+
+                content = Regex.Replace(content,temp,param);
+
+                StreamWriter writer = new StreamWriter(filename);
+                writer.Write(content);
+                writer.Close();                 
+            }
+            catch (Exception ex) { Console.Write(ex); }
         }
 
         public OleDbDataReader readdb(string dbaddress, string strAccessSelect)
@@ -35,10 +63,7 @@ namespace mssupport
             {
                 connection.Open();
                 OleDbDataReader temp = cmd.ExecuteReader();
-                //              connection.Close();
                 return temp;
-
-
             }
             catch (Exception ex)
             {
@@ -52,21 +77,10 @@ namespace mssupport
         {
             OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
             OleDbCommand cmd = new OleDbCommand("SELECT Код,ip FROM forscan", connection);
-            string tempip = "";
-
             try
             {
                 connection.Open();
-
-                //OleDbDataReader tempread = cmd.ExecuteReader();
-
-                //while (tempread.Read())
-                //{
-                //    tempip = tempread["ip"].ToString();
-                //}
                 connection.Close();
-
-
             }
             catch (Exception ex)
             {
@@ -153,7 +167,6 @@ namespace mssupport
             }
             catch (Exception ex)
             {
-                Console.WriteLine("error from tableexist: " + ex.Message);
                 return false;
             }
         }
