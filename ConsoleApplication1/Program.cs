@@ -13,25 +13,19 @@ namespace mssupport
 
             string dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
 
-            int scaninterval = 3000;
+            Console.WriteLine("Hello. Database file at "+dbaddress+"\n");
 
             if (args.Length == 0)
             {
                 m1.checknow();
-                while (1 == 1) 
-                {
-                    Console.Write("q");
-                    s1.scannow();
-                    Thread.Sleep(scaninterval);
-                }
             }
             else
             {
-                if (args[0] == "scan")
+                if (args[0] == "scantd")
                 {
                      s1.scannow(); return;
                 }
-                if (args[0] == "del")
+                if (args[0] == "deltd")
                 {
                     db.droptdforscandb(dbaddress, "forscan");
                     db.setdbparam("config.txt", 1, "scanstopnow");

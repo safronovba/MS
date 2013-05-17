@@ -24,7 +24,7 @@ public class icmp
 
     public string resolveip(string hostnametoresolve)
     {
-        string tempip="";
+        string tempip = "";
         try { tempip = Dns.Resolve(hostnametoresolve).AddressList[0].ToString(); }
         catch (Exception ex) { tempip = ex.Message; }
         return tempip;
@@ -37,7 +37,7 @@ public class icmp
         return tempmac;
     }
 
-        public string resolvename(IPAddress hostiptoresolve)
+    public string resolvename(IPAddress hostiptoresolve)
     {
         string tempname;
         tempname = Dns.Resolve(hostiptoresolve.ToString()).HostName.ToString();
@@ -46,8 +46,8 @@ public class icmp
 
     public string resolveip(IPAddress hostnametoresolve)
     {
-        string tempip="";
-        try { tempip = Dns.Resolve(hostnametoresolve.ToString() ).AddressList[0].ToString(); }
+        string tempip = "";
+        try { tempip = Dns.Resolve(hostnametoresolve.ToString()).AddressList[0].ToString(); }
         catch (Exception ex) { tempip = ex.Message; }
         return tempip;
     }
@@ -59,21 +59,21 @@ public class icmp
         return tempmac;
     }
 
-    public bool ping(string ip,int re)
+    public bool ping(string ip, int re)
     {
         PingReply Reply;
         byte[] Buffer = Encoding.ASCII.GetBytes(Data);
-            try { Reply = Sender.Send(ip, Timeout, Buffer); }
-            catch (Exception ex)
-            {
-                lastsuccess = DateTime.Now.ToString("T") + ": Ошибка: " + ex.Message;
-                return false; ;
-            }
-            if (Reply.Status == IPStatus.Success)
-            {
-                lastsuccess = DateTime.Now.ToString("T") + " - " + Reply.RoundtripTime + "мс";
-                return true;
-            }
+        try { Reply = Sender.Send(ip, Timeout, Buffer); }
+        catch (Exception ex)
+        {
+            lastsuccess = DateTime.Now.ToString("T") + "\nОшибка: " + ex;
+            return false; ;
+        }
+        if (Reply.Status == IPStatus.Success)
+        {
+            lastsuccess = DateTime.Now.ToString("T") + " - " + Reply.RoundtripTime + "мс";
+            return true;
+        }
         return false;
     }
 
@@ -81,18 +81,18 @@ public class icmp
     {
         PingReply Reply;
         byte[] Buffer = Encoding.ASCII.GetBytes(Data);
-            try { Reply = Sender.Send(ip, Timeout, Buffer); }
-            catch (Exception ex)
-            {
-                lastsuccess = "host " + ip + " is offline now";
-                lastsuccess = DateTime.Now.ToString("T") + ": Ошибка: " + ex.Message;
-                return false;
-            }
-            if (Reply.Status == IPStatus.Success)
-            {
-                lastsuccess = DateTime.Now.ToString("T") + " - " + Reply.RoundtripTime + "мс";
-                return true;
-            }
+        try { Reply = Sender.Send(ip, Timeout, Buffer); }
+        catch (Exception ex)
+        {
+            lastsuccess = "host " + ip + " is offline now";
+            lastsuccess = DateTime.Now.ToString("T") + ": Ошибка: " + ex.Message;
+            return false;
+        }
+        if (Reply.Status == IPStatus.Success)
+        {
+            lastsuccess = DateTime.Now.ToString("T") + " - " + Reply.RoundtripTime + "мс";
+            return true;
+        }
         return false;
     }
 
@@ -165,7 +165,7 @@ public class icmp
         IPAddress[] retval = new IPAddress[delta];
         /*Создаем список адресов диапазона
           перебор осуществляется простым приращением*/
-        for (uint i = 0; i <= delta-1; i++)
+        for (uint i = 0; i <= delta - 1; i++)
             /*Разворачиваем число в массив байтов
               Создаем экземпляр Ip адреса и передаем массив в конструктор
               Добавляем адрес в список*/
@@ -173,6 +173,4 @@ public class icmp
             catch { continue; }
         return retval;
     }
-       
-
 }

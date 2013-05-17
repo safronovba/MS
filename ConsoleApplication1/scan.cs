@@ -25,6 +25,8 @@ namespace mssupport
             int tempkod = 0;
             string tempname = "", tempgroup="";
 
+            if (db.tableexist(dbaddress,"forscan")){
+
             OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip,grp FROM forscan");
 
             while (tempread.Read())
@@ -54,8 +56,8 @@ namespace mssupport
             }
             Process MyProc = new Process();
             MyProc.StartInfo.FileName = "MSservice.exe";
-            MyProc.StartInfo.Arguments = "del";
-            MyProc.Start();
+            MyProc.StartInfo.Arguments = "deltd";
+            MyProc.Start();}
         }
     }
 }

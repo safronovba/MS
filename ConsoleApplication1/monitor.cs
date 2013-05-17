@@ -16,12 +16,13 @@ namespace mssupport
         {
             string dbaddress = "E:\\hosts.accdb";
             Process MyProc = new Process();
+            MyProc.StartInfo.FileName = "MSservice.exe";
             icmp icmp = new icmp();
             dbwork db = new dbwork();
 
             string newnowstate = "", newlasterror = "", newlastsuccess = "";
             DateTime newlasttime = DateTime.Parse("00:00:00");
-            int tempkod = 0, n = 0;
+            int tempkod = 0, n = 0, errortimes=0;
             int scanint;
 
             dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
@@ -33,8 +34,7 @@ namespace mssupport
                 {
                     if (db.tableexist(dbaddress, "forscan"))
                     {
-                        MyProc.StartInfo.FileName = "MSservice.exe";
-                        MyProc.StartInfo.Arguments = "scan";
+                        MyProc.StartInfo.Arguments = "scantd";
                         MyProc.Start();
                         Console.WriteLine("New hosts found. Run scan\n");
                     }
@@ -80,8 +80,15 @@ namespace mssupport
                         }
                     }
                 }
-                catch (Exception ex) { Console.Write("Ошибка tempread.Read()\n" + ex); Console.ReadKey(); return; }
-                Console.WriteLine("\nSleep for 3 seconds. | " + n++ +"\n");
+                catch (Exception)
+                {
+                    Console.Write("Ошибка tempread.Read()\n" + errortimes++ + " times already"); 
+                    //MyProc.StartInfo.Arguments = "check";
+                    //MyProc.Start();
+                    //return;
+                }
+                n++;
+                Console.WriteLine("\nSleep for 3 seconds. Now: "+n);
                 Thread.Sleep(3000);
             }
         }
