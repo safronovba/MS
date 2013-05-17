@@ -36,7 +36,7 @@ namespace mssupport
                         MyProc.StartInfo.FileName = "MSservice.exe";
                         MyProc.StartInfo.Arguments = "scan";
                         MyProc.Start();
-                        Console.WriteLine("\nNew hosts found. Run scan");
+                        Console.WriteLine("New hosts found. Run scan\n");
                     }
                 }
 
@@ -81,9 +81,7 @@ namespace mssupport
                     }
                 }
                 catch (Exception ex) { Console.Write("Ошибка tempread.Read()\n" + ex); Console.ReadKey(); return; }
-                n++;
-                  
-                Console.WriteLine("\nSleep for 10 seconds. | " + n +"\n");
+                Console.WriteLine("\nSleep for 3 seconds. | " + n++ +"\n");
                 Thread.Sleep(3000);
             }
         }
