@@ -15,19 +15,30 @@
         <a href="monitoring.aspx">State page</a>
         <br />
         <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Код" DataSourceID="AccessDataSource1" EmptyDataText="Нет записей для отображения.">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Код" DataSourceID="AccessDataSource1" EmptyDataText="Нет записей для отображения." ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="Код" HeaderText="Код" ReadOnly="True" SortExpression="Код" />
                 <asp:BoundField DataField="ip" HeaderText="ip" SortExpression="ip" />
                 <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
-                <asp:BoundField DataField="mac" HeaderText="mac" SortExpression="mac" />
                 <asp:BoundField DataField="scanint" HeaderText="scanint" SortExpression="scanint" />
                 <asp:BoundField DataField="nowstate" HeaderText="nowstate" SortExpression="nowstate" />
                 <asp:BoundField DataField="lasttime" HeaderText="lasttime" SortExpression="lasttime" />
+                <asp:BoundField DataField="grp" HeaderText="grp" SortExpression="grp" />
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
             </Columns>
+            <EditRowStyle BackColor="#2461BF" />
+            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EFF3FB" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+            <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-        <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="E:\hosts.accdb" DeleteCommand="DELETE FROM `hosts` WHERE `Код` = ?" InsertCommand="INSERT INTO `hosts` (`Код`, `ip`, `name`, `mac`, `scanint`, `nowstate`, `lasterror`, `lastsucces`, `lasttime`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)" SelectCommand="SELECT `Код`, `ip`, `name`, `mac`, `scanint`, `nowstate`, `lasterror`, `lastsucces`, `lasttime` FROM `hosts`" UpdateCommand="UPDATE `hosts` SET `ip` = ?, `name` = ?, `mac` = ?, `scanint` = ?, `nowstate` = ?, `lasterror` = ?, `lastsucces` = ?, `lasttime` = ? WHERE `Код` = ?">
+        <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="E:\hosts.accdb" DeleteCommand="DELETE FROM `hosts` WHERE `Код` = ?" InsertCommand="INSERT INTO `hosts` (`Код`, `ip`, `name`, `mac`, `scanint`, `nowstate`, `lasterror`, `lastsucces`, `lasttime`, `grp`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" SelectCommand="SELECT `Код`, `ip`, `name`, `mac`, `scanint`, `nowstate`, `lasterror`, `lastsucces`, `lasttime`, `grp` FROM `hosts`" UpdateCommand="UPDATE `hosts` SET `ip` = ?, `name` = ?, `mac` = ?, `scanint` = ?, `nowstate` = ?, `lasterror` = ?, `lastsucces` = ?, `lasttime` = ?, `grp` = ? WHERE `Код` = ?">
             <DeleteParameters>
                 <asp:Parameter Name="Код" Type="Int32" />
             </DeleteParameters>
@@ -41,6 +52,7 @@
                 <asp:Parameter Name="lasterror" Type="String" />
                 <asp:Parameter Name="lastsucces" Type="String" />
                 <asp:Parameter Name="lasttime" Type="DateTime" />
+                <asp:Parameter Name="grp" Type="String" />
             </InsertParameters>
             <UpdateParameters>
                 <asp:Parameter Name="ip" Type="String" />
@@ -51,11 +63,10 @@
                 <asp:Parameter Name="lasterror" Type="String" />
                 <asp:Parameter Name="lastsucces" Type="String" />
                 <asp:Parameter Name="lasttime" Type="DateTime" />
+                <asp:Parameter Name="grp" Type="String" />
                 <asp:Parameter Name="Код" Type="Int32" />
             </UpdateParameters>
         </asp:AccessDataSource>
-        <br />
-        <br />
     
     </div>
     </form>

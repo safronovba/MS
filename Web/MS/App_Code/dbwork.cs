@@ -107,11 +107,9 @@ public class dbwork
     }
         public void addtbforscandb(string dbaddress, string str)
         {
-            str = "CREATE TABLE " + str + "(Код Integer, ip VARCHAR)";
-        OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
-        OleDbCommand cmd = new OleDbCommand(str, connection);
-        cmd.CommandText = str;
-        cmd.Connection = connection;
+            str = "CREATE TABLE " + str + " (Код Integer, ip VARCHAR, grp VARCHAR)";
+            OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
+            OleDbCommand cmd = new OleDbCommand(str, connection);
 
             connection.Open();
             cmd.ExecuteNonQuery();

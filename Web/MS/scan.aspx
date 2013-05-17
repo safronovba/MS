@@ -23,6 +23,8 @@
         <asp:Label ID="Label2" runat="server" Text="Retry count:" Visible="False"></asp:Label>
         <asp:TextBox ID="retrycountbox" runat="server" Width="57px" Visible="False">1</asp:TextBox>
         <br />
+        Group:<asp:TextBox ID="groupnamebox" runat="server">default</asp:TextBox>
+        <br />
         <asp:TextBox ID="scanstate" runat="server" Width="359px" style="margin-top: 0px">scan it</asp:TextBox>
         <br />
         <br />

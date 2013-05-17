@@ -76,7 +76,7 @@ namespace mssupport
         public void readdbclose(string dbaddress, string strAccessSelect)
         {
             OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
-            OleDbCommand cmd = new OleDbCommand("SELECT Код,ip FROM forscan", connection);
+            OleDbCommand cmd = new OleDbCommand("SELECT Код,ip,group FROM forscan", connection);
             try
             {
                 connection.Open();
@@ -117,9 +117,9 @@ namespace mssupport
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.WriteLine("error from insertdb");
+                Console.WriteLine("error from insertdb:"+ex);
             }
         }
 
@@ -190,7 +190,7 @@ namespace mssupport
         }
         public void addtbforscandb(string dbaddress, string str)
         {
-            str = "CREATE TABLE " + str + "(Код Integer, ip VARCHAR)";
+            str = "CREATE TABLE " + str + "(Код Integer, ip VARCHAR, grp VARCHAR)";
             OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
             OleDbCommand cmd = new OleDbCommand(str, connection);
 

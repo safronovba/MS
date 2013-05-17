@@ -19,23 +19,32 @@ public partial class scan : System.Web.UI.Page
     {
         string dbaddress = "E:\\hosts.accdb";
         dbwork db = new dbwork();
+        IPAddress fromip = null;
+        IPAddress toip = null;
+
         try
         {
             db.addtbforscandb(dbaddress, "forscan");
         }
         catch (Exception ex) {scanstate.Text=ex.ToString();}
-        IPAddress fromip = IPAddress.Parse(scanrangefrombox.Text);
-        IPAddress toip = IPAddress.Parse(scanrangetobox.Text);
+        try
+        {
+            fromip = IPAddress.Parse(scanrangefrombox.Text);
+            toip = IPAddress.Parse(scanrangetobox.Text);
+        }
+        catch
+        { scanstate.Text = "Wrong ip"; }
         icmp temp = new icmp();
 
         int re = 1, id = 1;
         re = System.Int32.Parse(retrycountbox.Text);
+        string group = groupnamebox.Text;
         var ips = temp.ExpandIpRange(fromip, toip);
         foreach (var ip in ips)
         {
             id++;
-            db.insertdb(dbaddress, "INSERT INTO forscan (Код,ip) values (" + id + ",'" + ip + "')");
+            db.insertdb(dbaddress, "INSERT INTO forscan (Код,ip,grp) values (" + id + ",'" + ip + "','" + group + "')");
         }
-        scanstate.Text = (id-1) + " devices to check";
+  //      scanstate.Text = "Range send to check";
     }
 }

@@ -23,20 +23,21 @@ namespace mssupport
 
             int lastid = db.findlastkod(dbaddress, "hosts");
             int tempkod = 0;
-            string tempname = "";
+            string tempname = "", tempgroup="";
 
-            OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip FROM forscan");
+            OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip,grp FROM forscan");
 
             while (tempread.Read())
             {
                 tempkod = Convert.ToInt32(tempread["Код"]);
                 tempip = tempread["ip"].ToString();
+                tempgroup = tempread["grp"].ToString();
 
                 if (temp.ping(tempip, 1))
                 {
                     lastid++;
                     tempname=temp.resolvename(tempip);
-                    db.insertdb(dbaddress, "INSERT INTO hosts (Код,ip,name,scanint) values ("+ lastid + ",'" + tempip + "','" + tempname + "',22)");
+                    db.insertdb(dbaddress, "INSERT INTO hosts (Код,ip,name,scanint,grp) values (" + lastid + ",'" + tempip + "','" + tempname + "',22,'" + tempgroup + "')");
                     if (tempname == tempip)
                     {
                         Console.WriteLine("!New device with ip " + tempip);
