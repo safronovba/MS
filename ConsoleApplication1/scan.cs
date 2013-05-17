@@ -37,11 +37,18 @@ namespace mssupport
                     lastid++;
                     tempname=temp.resolvename(tempip);
                     db.insertdb(dbaddress, "INSERT INTO hosts (Код,ip,name,scanint) values ("+ lastid + ",'" + tempip + "','" + tempname + "',22)");
-                    Console.WriteLine("new device "+tempname+" with ip " + tempip);
+                    if (tempname == tempip)
+                    {
+                        Console.WriteLine("!New device with ip " + tempip);
+                    }
+                    else
+                    {
+                        Console.WriteLine("!New device " + tempname + " with ip " + tempip);
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("no icmp device at " + tempip);
+                    Console.WriteLine("No icmp device at " + tempip);
                 }
             }
             Process MyProc = new Process();

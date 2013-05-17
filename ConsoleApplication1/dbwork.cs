@@ -51,7 +51,7 @@ namespace mssupport
                 writer.Write(content);
                 writer.Close();                 
             }
-            catch (Exception ex) { Console.Write(ex); }
+            catch (Exception) {}
         }
 
         public OleDbDataReader readdb(string dbaddress, string strAccessSelect)
@@ -65,9 +65,9 @@ namespace mssupport
                 OleDbDataReader temp = cmd.ExecuteReader();
                 return temp;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("error from readdb: " + ex.Message);
+                Console.WriteLine("error from readdb");
                 return null;
             }
 
@@ -82,9 +82,9 @@ namespace mssupport
                 connection.Open();
                 connection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("error from readdb: " + ex.Message);
+                Console.WriteLine("error from readdb");
             }
 
         }
@@ -100,9 +100,9 @@ namespace mssupport
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("error from updatedb: " + ex.Message);
+                Console.WriteLine("error from updatedb");
             }
         }
 
@@ -117,9 +117,9 @@ namespace mssupport
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("error from insertdb: " + ex.Message);
+                Console.WriteLine("error from insertdb");
             }
         }
 
@@ -145,9 +145,9 @@ namespace mssupport
                 connection.Close();
                 return lastnum;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("error from findlastkod: " + ex.Message);
+                Console.WriteLine("error from findlastkod");
                 return 1;
             }
         }
@@ -165,7 +165,7 @@ namespace mssupport
                 connection.Close();
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -183,9 +183,9 @@ namespace mssupport
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("error from droptdforscandb: " + ex.Message);
+                Console.WriteLine("error from droptdforscandb");
             }
         }
         public void addtbforscandb(string dbaddress, string str)
@@ -200,9 +200,9 @@ namespace mssupport
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("error from addtbforscandb: " + ex.Message);
+                Console.WriteLine("error from addtbforscandb:");
             }
         }
     }

@@ -28,6 +28,19 @@ namespace mssupport
 
             while (true)
             {
+                //check scan
+                if (db.getdbparam("config.txt").GetValue(1).ToString() != "scanworknow")
+                {
+                    if (db.tableexist(dbaddress, "forscan"))
+                    {
+                        MyProc.StartInfo.FileName = "MSservice.exe";
+                        MyProc.StartInfo.Arguments = "scan";
+                        MyProc.Start();
+                        Console.WriteLine("\nNew hosts found. Run scan");
+                    }
+                }
+
+                //run monitoring
                 OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip,scanint,nowstate,lasterror,lastsucces,lasttime FROM hosts");
                 try
                 {
@@ -69,16 +82,7 @@ namespace mssupport
                 }
                 catch (Exception ex) { Console.Write("Ошибка tempread.Read()\n" + ex); Console.ReadKey(); return; }
                 n++;
-                    if (db.getdbparam("config.txt").GetValue(1).ToString() != "scanworknow")
-                    {
-                        if (db.tableexist(dbaddress, "forscan"))
-                        {
-                            MyProc.StartInfo.FileName = "MSservice.exe";
-                            MyProc.StartInfo.Arguments = "scan";
-                            MyProc.Start();
-                            Console.WriteLine("\nNew hosts found. Run scan");
-                        }
-                    }
+                  
                 Console.WriteLine("\nSleep for 10 seconds. | " + n +"\n");
                 Thread.Sleep(3000);
             }
