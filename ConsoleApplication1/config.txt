@@ -1,2 +1,2 @@
 ﻿E:\\hosts.accdb
-scan
+scanstopnow

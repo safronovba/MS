@@ -20,29 +20,34 @@ namespace mssupport
 
             dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
             db.setdbparam("config.txt", 1, "scanworknow");
-           
-                int lastid = db.findlastkod(dbaddress, "hosts");
-                int tempkod = 0;
 
-                OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip FROM forscan");
+            int lastid = db.findlastkod(dbaddress, "hosts");
+            int tempkod = 0;
+            string tempname = "";
 
-                while (tempread.Read())
+            OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip FROM forscan");
+
+            while (tempread.Read())
+            {
+                tempkod = Convert.ToInt32(tempread["Код"]);
+                tempip = tempread["ip"].ToString();
+
+                if (temp.ping(tempip, 1))
                 {
-                    tempkod = Convert.ToInt32(tempread["Код"]);
-                    tempip = tempread["ip"].ToString();
-
-                    if (temp.ping(tempip, 1))
-                    {
-                        lastid++;
-                        Console.WriteLine("before");
-                        db.insertdb(dbaddress, "INSERT INTO hosts (Код,ip,scanint) values (" + lastid + ",'" + tempip + "',22)");
-                        Console.WriteLine("new device: " + tempip);
-                    }
+                    lastid++;
+                    tempname=temp.resolvename(tempip);
+                    db.insertdb(dbaddress, "INSERT INTO hosts (Код,ip,name,scanint) values ("+ lastid + ",'" + tempip + "','" + tempname + "',22)");
+                    Console.WriteLine("new device "+tempname+" with ip " + tempip);
                 }
-                Process MyProc = new Process();
-                MyProc.StartInfo.FileName = "MSservice.exe";
-                MyProc.StartInfo.Arguments = "del";
-                MyProc.Start();
+                else
+                {
+                    Console.WriteLine("no icmp device at " + tempip);
+                }
+            }
+            Process MyProc = new Process();
+            MyProc.StartInfo.FileName = "MSservice.exe";
+            MyProc.StartInfo.Arguments = "del";
+            MyProc.Start();
         }
     }
 }

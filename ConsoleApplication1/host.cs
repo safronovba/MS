@@ -84,7 +84,7 @@ public class host
             left = (DateTime.Now.Hour * 60 + DateTime.Now.Minute) * 60 + DateTime.Now.Second;
             right = (System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Hour * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Minute) * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Second;
         }
-        catch (Exception ex) { Console.Write(ex); }
+        catch (Exception ex) { Console.WriteLine("no lasttime on device"); }
         if (left > right)
         {
             return true;
