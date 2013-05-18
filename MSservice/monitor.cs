@@ -12,7 +12,7 @@ class monitor
 {
     public void checknow()
     {
-        Console.WriteLine("Monitor started.");
+        Console.WriteLine("Monitor started.\n");
         string dbaddress = "E:\\hosts.accdb";
         Process MyProc = new Process();
         MyProc.StartInfo.FileName = "MSservice.exe";
@@ -79,9 +79,9 @@ class monitor
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Console.Write("Ошибка tempread.Read()\n" + errortimes++ + " times already");
+                Console.Write("Ошибка tempread.Read()\n" + ex + "\n"+errortimes+" times already");
                 if (errortimes > 10)
                 {
                     MyProc.StartInfo.Arguments = "check";
@@ -90,7 +90,7 @@ class monitor
                 }
             }
             n++;
-            Console.WriteLine("\nSleep for 3 seconds. Now: " + n);
+            Console.WriteLine("\nSleep for 3 seconds. Now: " + n +"\n");
             Thread.Sleep(3000);
         }
     }

@@ -77,7 +77,7 @@ public class host
         double tempinterval = this.scanint;
         int left = 0, right = 1;
 
-        if (this.lasttime == null) { this.lasttime = DateTime.Now.ToString(); }
+        if ((this.lasttime == null) || (this.lasttime == "")) { return true; }
         left = (DateTime.Now.Hour * 60 + DateTime.Now.Minute) * 60 + DateTime.Now.Second;
         right = (System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Hour * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Minute) * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Second;
 

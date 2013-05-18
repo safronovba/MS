@@ -8,11 +8,11 @@ namespace mssupport
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello.");
+
             monitor m1 = new monitor();
             scan s1 = new scan();
             dbwork db = new dbwork();
-
-            Console.WriteLine("Hello.");
 
             string dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
 
@@ -41,8 +41,12 @@ namespace mssupport
                 }
                 if (args[0] == "deltd")
                 {
+                    Console.WriteLine("Now table forscan delete");
                     db.droptdforscandb(dbaddress, "forscan");
+                    Console.WriteLine("Complite.\nWrite new cfg file");
                     db.setdbparam("config.txt", 1, "scanstopnow");
+                    Console.WriteLine("Done\nGood bye.");
+                    Thread.Sleep(3000);
                     return;
                 }
                 if (args[0] == "check")

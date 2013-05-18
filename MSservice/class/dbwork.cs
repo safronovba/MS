@@ -25,27 +25,24 @@ public class dbwork
 
     public void setdbparam(string filename, int i, string param)
     {
-        try
+
+        StreamReader reader = new StreamReader(filename);
+        string content = null, temp = null;
+
+        for (int j = 0; j != i + 1; j++)
         {
-            StreamReader reader = new StreamReader(filename);
-            string content = null, temp = null;
-
-            for (int j = 0; j != i + 1; j++)
-            {
-                temp = reader.ReadLine();
-                content = content + temp;
-                content = content + '\n';
-            }
-
-            reader.Close();
-
-            content = Regex.Replace(content, temp, param);
-
-            StreamWriter writer = new StreamWriter(filename);
-            writer.Write(content);
-            writer.Close();
+            temp = reader.ReadLine();
+            content = content + temp;
+            content = content + '\n';
         }
-        catch (Exception) { }
+
+        reader.Close();
+
+        content = Regex.Replace(content, temp, param);
+
+        StreamWriter writer = new StreamWriter(filename);
+        writer.Write(content);
+        writer.Close();
     }
 
     public OleDbDataReader readdb(string dbaddress, string strAccessSelect)
@@ -67,22 +64,6 @@ public class dbwork
 
     }
 
-    public void readdbclose(string dbaddress, string strAccessSelect)
-    {
-        OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
-        OleDbCommand cmd = new OleDbCommand("SELECT Код,ip,group FROM forscan", connection);
-        try
-        {
-            connection.Open();
-            connection.Close();
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("error from readdb");
-        }
-
-    }
-
     public void updatedb(string dbaddress, string strAccessInsert)
     {
         OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
@@ -98,27 +79,19 @@ public class dbwork
         OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
         OleDbCommand cmd = new OleDbCommand(strAccessInsert, connection);
 
-        try
-        {
-            connection.Open();
-            cmd.ExecuteNonQuery();
-            connection.Close();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("error from insertdb:" + ex);
-        }
+        connection.Open();
+        cmd.ExecuteNonQuery();
+        connection.Close();
     }
 
     public int findlastkod(string dbaddress, string str)
     {
         dbwork db = new dbwork();
-
         OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
         OleDbCommand cmd = new OleDbCommand("SELECT Код FROM " + str, connection);
         int lastnum = 0;
 
-        try
+        if (db.tableexist(dbaddress, str))
         {
             connection.Open();
 
@@ -128,15 +101,10 @@ public class dbwork
                 lastnum = Convert.ToInt32(readID["Код"]); // Присваиваем таймеру значение максимального id
             }
             readID.Close();
-
             connection.Close();
             return lastnum;
         }
-        catch (Exception)
-        {
-            Console.WriteLine("error from findlastkod");
-            return 1;
-        }
+        return 1;
     }
 
     public bool tableexist(string dbaddress, string str)
@@ -157,7 +125,6 @@ public class dbwork
 
     public bool tableexist(string dbaddress, string str, bool unittest)
     {
-        dbwork db = new dbwork();
         OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
         OleDbCommand cmd = new OleDbCommand("SELECT Код FROM " + str, connection);
 
@@ -179,26 +146,21 @@ public class dbwork
 
     public void droptdforscandb(string dbaddress, string str)
     {
-        str = "DROP TABLE " + str;
+        dbwork db = new dbwork();
         OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
-        OleDbCommand cmd = new OleDbCommand(str, connection);
+        OleDbCommand cmd = new OleDbCommand("DROP TABLE " + str, connection);
 
-        try
+        if (db.tableexist(dbaddress, str))
         {
             connection.Open();
             cmd.ExecuteNonQuery();
             connection.Close();
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("error from droptdforscandb");
         }
     }
 
     public void addtbforscandb(string dbaddress, string str)
     {
         dbwork db = new dbwork();
-
         if (db.tableexist(dbaddress, str)) { return; };
 
         str = "CREATE TABLE " + str + "(Код Integer, ip VARCHAR, grp VARCHAR)";
@@ -210,5 +172,24 @@ public class dbwork
         cmd.ExecuteNonQuery();
         connection.Close();
 
+    }
+
+    public bool doubleipcheck(string dbaddress, string newip)
+    {
+        OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
+        OleDbCommand cmd = new OleDbCommand("SELECT ip FROM hosts", connection);
+        OleDbDataReader tempread = null;
+        dbwork db = new dbwork();
+
+        if (db.tableexist(dbaddress, "hosts"))
+        {
+            connection.Open();
+            tempread = cmd.ExecuteReader();
+            while (tempread.Read())
+            {
+                if (newip == tempread["ip"].ToString()) { return false; }
+            }
+        }
+        return true;
     }
 }

@@ -20,17 +20,24 @@ public class UnitTest1
     }
 
     [TestMethod]
-    public void DbAccessTest()  
+    public void DbCreateTableTest()  
+    {
+        dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
+        newdb.addtbforscandb(dbaddress, "forscan");
+    }
+
+    [TestMethod]
+    public void DbAccessTest()
     {
         dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
         newdb.tableexist(dbaddress, "forscan", true);
     }
 
     [TestMethod]
-    public void DbCreateTableTest()  
+    public void DbDeleteTableTest()
     {
         dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
-        newdb.addtbforscandb(dbaddress, "forscan");
+        newdb.droptdforscandb(dbaddress, "forscan");
     }
 
     [TestMethod]
