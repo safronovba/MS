@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSservice", "ConsoleApplica
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MS", "Web\MS\", "{027604CA-27AB-4319-8362-3167CB92F22C}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/MS"
 		Debug.AspNetCompiler.PhysicalPath = "Web\MS\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\MS\"
