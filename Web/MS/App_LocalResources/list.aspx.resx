@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>name</value>
+    <value>Имя</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,7 +151,7 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>scanint</value>
+    <value>Интервал</value>
   </data>
   <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -160,7 +160,7 @@
     <value />
   </data>
   <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
-    <value>nowstate</value>
+    <value>Состояние</value>
   </data>
   <data name="BoundFieldResource6.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -169,7 +169,7 @@
     <value />
   </data>
   <data name="BoundFieldResource6.HeaderText" xml:space="preserve">
-    <value>lasttime</value>
+    <value>Последний запрос</value>
   </data>
   <data name="BoundFieldResource7.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -178,7 +178,7 @@
     <value />
   </data>
   <data name="BoundFieldResource7.HeaderText" xml:space="preserve">
-    <value>grp</value>
+    <value>Группа</value>
   </data>
   <data name="CommandFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />

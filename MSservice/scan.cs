@@ -20,13 +20,14 @@ namespace mssupport
             icmp temp = new icmp();
 
             MyProc.StartInfo.FileName = "MSservice.exe";
-
+            Thread.Sleep(1000);
             string dbaddress = null;
             string tempip = null;
             int errortimes = 0;
 
             Console.WriteLine("read cfg");
             dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
+            Thread.Sleep(1000);
 
             Console.WriteLine("Write new cfg");
             db.setdbparam("config.txt", 1, "scanworknow");

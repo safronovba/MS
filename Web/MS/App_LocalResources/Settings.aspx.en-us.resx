@@ -124,13 +124,13 @@
     <value />
   </data>
   <data name="Button1Resource1.Text" xml:space="preserve">
-    <value>Применить</value>
+    <value>Accept</value>
   </data>
   <data name="Button1Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
-    <value>База данных:</value>
+    <value>DB file:</value>
   </data>
   <data name="Label1Resource1.ToolTip" xml:space="preserve">
     <value />

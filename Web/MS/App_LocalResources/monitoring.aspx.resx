@@ -133,7 +133,7 @@
     <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>имя</value>
+    <value>Имя</value>
   </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>состояние</value>
+    <value>Состояние</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,7 +151,7 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>ошибка</value>
+    <value>Ошибка</value>
   </data>
   <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -160,7 +160,7 @@
     <value />
   </data>
   <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
-    <value>успех</value>
+    <value>Успех</value>
   </data>
   <data name="GridView1Resource1.Caption" xml:space="preserve">
     <value />

@@ -44,7 +44,11 @@ namespace mssupport
                 if (args[0] == "deltd")
                 {
                     Console.WriteLine("Now table forscan delete");
-                    db.droptdforscandb(dbaddress, "forscan");
+                    try
+                    {
+                        db.droptdforscandb(dbaddress, "forscan");
+                    }
+                    catch (System.Data.OleDb.OleDbException) { Console.WriteLine("Can not delete"); return; }
                     Console.WriteLine("Complite.\nWrite new cfg file");
                     db.setdbparam("config.txt", 1, "scanstopnow");
                     Console.WriteLine("Done\nGood bye.");

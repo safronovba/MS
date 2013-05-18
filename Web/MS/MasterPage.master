@@ -11,13 +11,15 @@
     <form id="form1" runat="server">
     <div>
     
-        <a href="hostadd.aspx">Add new host</a>&nbsp;&nbsp;&nbsp;<a href="scan.aspx">Scan for hosts</a>&nbsp;&nbsp;&nbsp;<a href="list.aspx">Device list</a>&nbsp;&nbsp;&nbsp;
-        <a href="monitoring.aspx">State page</a>
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="hostadd.aspx" meta:resourcekey="HyperLink1Resource1">Add new host</asp:HyperLink>&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="scan.aspx" meta:resourcekey="HyperLink2Resource1">Scan for hosts</asp:HyperLink>&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="list.aspx" meta:resourcekey="HyperLink3Resource1">Device list</asp:HyperLink>&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="monitoring.aspx" meta:resourcekey="HyperLink4Resource1">State page</asp:HyperLink>&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="settings.aspx" meta:resourcekey="HyperLink1Resource5">Settings</asp:HyperLink>
+
+&nbsp;<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
 
             <asp:ContentPlaceHolder id="down" runat="server">
+                <p>
+                    2013</p>
     </asp:ContentPlaceHolder>
     </div>
     </form>

@@ -55,40 +55,46 @@ public class icmp
     public string resolvemac(IPAddress hostmactoresolve)
     {
         string tempmac;
-        tempmac = "000000000000";
+        tempmac = "00";
         return tempmac;
     }
 
     public bool ping(string ip, int re)
     {
-        int i = 0;
-        PingReply Reply;
+        PingReply Reply = null;
         byte[] Buffer = Encoding.ASCII.GetBytes(Data);
-        try { Reply = Sender.Send(ip, Timeout, Buffer); }
-        catch (PingException ex)
+        for (int i = 0; i < re + 1; i++)
         {
-            lastsuccess = "host " + ip + " is offline now";
-            lastsuccess = DateTime.Now.ToString("T") + ": Ошибка: " + ex.Message;
-            i++;
-            if (i > re) { return false; }
+            try { Reply = Sender.Send(ip, Timeout, Buffer); }
+            catch (PingException)
+            {
+                if (i == re) { return false; }
+            }
+            if (Reply.Status == IPStatus.Success)
+            {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public bool ping(IPAddress ip, int re)
     {
-        int i=0;
-        PingReply Reply;
+        PingReply Reply=null;
         byte[] Buffer = Encoding.ASCII.GetBytes(Data);
-        try { Reply = Sender.Send(ip, Timeout, Buffer); }
-        catch (PingException ex)
+        for (int i = 0; i < re+1; i++)
         {
-            lastsuccess = "host " + ip + " is offline now";
-            lastsuccess = DateTime.Now.ToString("T") + ": Ошибка: " + ex.Message;
-            i++;
-            if (i > re) { return false; }
+            try { Reply = Sender.Send(ip, Timeout, Buffer); }
+            catch (PingException)
+            {
+                if (i == re) { return false; }
+            }
+            if (Reply.Status == IPStatus.Success)
+            {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public string ping(string ip)

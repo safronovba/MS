@@ -117,85 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="addbuttonResource1.Text" xml:space="preserve">
-    <value>Добавить</value>
+  <data name="HyperLink1Resource1.Text" xml:space="preserve">
+    <value>Добавить узел</value>
   </data>
-  <data name="addbuttonResource1.ToolTip" xml:space="preserve">
+  <data name="HyperLink1Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="clearbuttonResource1.Text" xml:space="preserve">
-    <value>Очистить</value>
+  <data name="HyperLink1Resource5.Text" xml:space="preserve">
+    <value>Настройки</value>
   </data>
-  <data name="clearbuttonResource1.ToolTip" xml:space="preserve">
+  <data name="HyperLink1Resource5.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="grouptextboxResource1.Text" xml:space="preserve">
-    <value>default</value>
+  <data name="HyperLink2Resource1.Text" xml:space="preserve">
+    <value>Сканирование</value>
   </data>
-  <data name="grouptextboxResource1.ToolTip" xml:space="preserve">
+  <data name="HyperLink2Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="hostipformResource1.Text" xml:space="preserve">
+  <data name="HyperLink3Resource1.Text" xml:space="preserve">
+    <value>Список узлов</value>
+  </data>
+  <data name="HyperLink3Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="hostipformResource1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="HyperLink4Resource1.Text" xml:space="preserve">
+    <value>Мониторинг</value>
   </data>
-  <data name="hostnameformResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hostnameformResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hostscanintResource1.Text" xml:space="preserve">
-    <value>60</value>
-  </data>
-  <data name="hostscanintResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label1Resource1.Text" xml:space="preserve">
-    <value>ip адрес:</value>
-  </data>
-  <data name="Label1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label2Resource1.Text" xml:space="preserve">
-    <value>Имя хоста:</value>
-  </data>
-  <data name="Label2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label3Resource1.Text" xml:space="preserve">
-    <value>Группа:</value>
-  </data>
-  <data name="Label3Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label4Resource1.Text" xml:space="preserve">
-    <value>Интервал опроса:</value>
-  </data>
-  <data name="Label4Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PageResource1.Title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="resolvebuttonResource1.Text" xml:space="preserve">
-    <value>Инфо</value>
-  </data>
-  <data name="resolvebuttonResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="resulttextboxResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="resulttextboxResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="testbuttonResource1.Text" xml:space="preserve">
-    <value>Тест</value>
-  </data>
-  <data name="testbuttonResource1.ToolTip" xml:space="preserve">
+  <data name="HyperLink4Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
 </root>
