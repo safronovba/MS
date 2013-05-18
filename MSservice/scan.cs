@@ -35,7 +35,7 @@ namespace mssupport
                     tempip = tempread["ip"].ToString();
                     tempgroup = tempread["grp"].ToString();
 
-                    if (temp.ping(tempip, 1))
+                    if (temp.ping(tempip, 2))
                     {
                         lastid++;
                         tempname = temp.resolvename(tempip);

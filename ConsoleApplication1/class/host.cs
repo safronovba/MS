@@ -20,12 +20,12 @@ public class host
         this.ip = ip;
     }
 
-	public host(string ip, string name, string mac)
-	{
+    public host(string ip, string name, string mac)
+    {
         this.ip = ip;
         this.name = name;
         this.mac = mac;
-	}
+    }
 
     public host(string ip, string name, string mac, int scanint)
     {
@@ -54,7 +54,7 @@ public class host
     public string Ip
     {
         get { return ip; }
-        set { ip=Ip; }
+        set { ip = Ip; }
     }
 
     public string Name
@@ -69,19 +69,18 @@ public class host
 
     public int Scanint
     {
-     get { return scanint; }
+        get { return scanint; }
     }
 
     public bool timecheck()
     {
-        double tempinterval=this.scanint;
+        double tempinterval = this.scanint;
         int left = 0, right = 1;
-        try
-        {
-            left = (DateTime.Now.Hour * 60 + DateTime.Now.Minute) * 60 + DateTime.Now.Second;
-            right = (System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Hour * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Minute) * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Second;
-        }
-        catch (Exception ex) { Console.WriteLine("no lasttime on device"); }
+
+        if (this.lasttime == null) { this.lasttime = DateTime.Now.ToString(); }
+        left = (DateTime.Now.Hour * 60 + DateTime.Now.Minute) * 60 + DateTime.Now.Second;
+        right = (System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Hour * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Minute) * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Second;
+
         if (left > right)
         {
             return true;

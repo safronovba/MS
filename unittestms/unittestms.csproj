@@ -64,8 +64,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApplication1\MSservice.csproj">
-      <Project>{c77b4c4f-5900-46c6-9628-8d2e889a7a8b}</Project>
+    <ProjectReference Include="..\MSservice\MSservice.csproj">
+      <Project>{cd7ad869-92dc-4da8-b259-9d0d646fe2df}</Project>
       <Name>MSservice</Name>
     </ProjectReference>
   </ItemGroup>
