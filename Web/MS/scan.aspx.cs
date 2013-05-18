@@ -25,6 +25,7 @@ public partial class scan : System.Web.UI.Page
         if (db.tableexist(dbaddress, "forscan"))
         {
             db.droptdforscandb(dbaddress, "forscan");
+            db.addtbforscandb(dbaddress, "forscan"); 
         }
         else
         { 

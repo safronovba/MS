@@ -18,16 +18,15 @@ namespace mssupport
             Process MyProc = new Process();
             dbwork db = new dbwork();
             icmp temp = new icmp();
+            host wkhost = new host();
 
             MyProc.StartInfo.FileName = "MSservice.exe";
-            Thread.Sleep(1000);
             string dbaddress = null;
             string tempip = null;
             int errortimes = 0;
 
-            Console.WriteLine("read cfg");
+            Console.WriteLine("Read cfg");
             dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
-            Thread.Sleep(1000);
 
             Console.WriteLine("Write new cfg");
             db.setdbparam("config.txt", 1, "scanworknow");
@@ -39,6 +38,8 @@ namespace mssupport
             Console.WriteLine("Start scan.");
             if (db.tableexist(dbaddress, "forscan"))
             {
+                string[] oldhosts = db.takehosts(dbaddress);
+
                 try
                 {
                     Console.WriteLine("Table exists");
@@ -52,7 +53,7 @@ namespace mssupport
                         Console.WriteLine(tempip);
                         tempgroup = tempread["grp"].ToString();
 
-                        if (db.doubleipcheck(dbaddress, tempip))
+                        if (!wkhost.checkmatch(tempip, oldhosts))
                         {
                             Console.WriteLine("Try to ping");
                             if (temp.ping(tempip, 2))
@@ -81,7 +82,7 @@ namespace mssupport
                             Console.WriteLine("Host " + tempip + " not new\n");
                         }
                     }
-                    Thread.Sleep(3000);
+                    Thread.Sleep(1000);
 
                     MyProc.StartInfo.Arguments = "deltd";
                     MyProc.Start();
@@ -91,7 +92,7 @@ namespace mssupport
                     Console.Write("Ошибка tempread.Read()\n" + ex + "\n" + errortimes++ + " times already");
                     if (errortimes > 3)
                     {
-                        MyProc.StartInfo.Arguments = "scan";
+                        MyProc.StartInfo.Arguments = "scantd";
                         MyProc.Start();
                         return;
                     }

@@ -21,7 +21,7 @@ class monitor
 
         string newnowstate = "", newlasterror = "", newlastsuccess = "";
         DateTime newlasttime = DateTime.Parse("00:00:00");
-        int tempkod = 0, n = 0, errortimes = 0;
+        int tempkod = 0, errortimes = 0;
         int scanint;
 
         dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
@@ -89,9 +89,7 @@ class monitor
                     return;
                 }
             }
-            n++;
-            Console.WriteLine("\nSleep for 3 seconds. Now: " + n +"\n");
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
         }
     }
 }

@@ -16,6 +16,8 @@ public class host
     private string lasttime;
     private string group;
 
+    public host() { }
+
     public host(string ip)
     {
         this.ip = ip;
@@ -100,6 +102,15 @@ public class host
         if (left > right)
         {
             return true;
+        }
+        return false;
+    }
+
+    public bool checkmatch(string ip, string[] oldhosts)
+    {
+        for (int i = 0; i < oldhosts.Length; i++)
+        {
+            if (ip == oldhosts[i]) { return true; }
         }
         return false;
     }

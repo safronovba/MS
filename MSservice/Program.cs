@@ -49,7 +49,7 @@ namespace mssupport
                         db.droptdforscandb(dbaddress, "forscan");
                     }
                     catch (System.Data.OleDb.OleDbException) { Console.WriteLine("Can not delete"); return; }
-                    Console.WriteLine("Complite.\nWrite new cfg file");
+                    Console.WriteLine("Complite.\nWrite new cfg");
                     db.setdbparam("config.txt", 1, "scanstopnow");
                     Console.WriteLine("Done\nGood bye.");
                     Thread.Sleep(3000);
