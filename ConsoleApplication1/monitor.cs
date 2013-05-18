@@ -14,6 +14,7 @@ namespace mssupport
     {
         public void checknow()
         {
+            Console.WriteLine("Monitor started.");
             string dbaddress = "E:\\hosts.accdb";
             Process MyProc = new Process();
             MyProc.StartInfo.FileName = "MSservice.exe";
@@ -82,10 +83,13 @@ namespace mssupport
                 }
                 catch (Exception)
                 {
-                    Console.Write("Ошибка tempread.Read()\n" + errortimes++ + " times already"); 
-                    //MyProc.StartInfo.Arguments = "check";
-                    //MyProc.Start();
-                    //return;
+                    Console.Write("Ошибка tempread.Read()\n" + errortimes++ + " times already");
+                    if (errortimes > 10)
+                    {
+                        MyProc.StartInfo.Arguments = "check";
+                        MyProc.Start();
+                        return;
+                    }
                 }
                 n++;
                 Console.WriteLine("\nSleep for 3 seconds. Now: "+n);

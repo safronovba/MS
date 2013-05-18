@@ -12,7 +12,7 @@ namespace mssupport
     {
         public void scannow()
         {
-
+            Console.WriteLine("Now scan.");
             string dbaddress = "E:\\hosts.accdb";
             dbwork db = new dbwork();
             icmp temp = new icmp();

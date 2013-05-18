@@ -24,6 +24,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MS", "Web\MS\", "{027604CA-
 		VWDVirtualPath = "/"
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{392B3023-8160-4FDE-A0C8-B97F1CAAB3B4}"
+	ProjectSection(SolutionItems) = preProject
+		MSBuild.config = MSBuild.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
