@@ -4,9 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Net;
 
-/// <summary>
-/// Сводное описание для host
-/// </summary>
 public class host
 {
     private string ip;
@@ -71,9 +68,9 @@ public class host
     }
 
     public int Scanint
- {
+    {
      get { return scanint; }
- }
+    }
 
     public bool timecheck()
     {

@@ -9,49 +9,45 @@ using System.Threading.Tasks;
 
 namespace mssupport
 {
-    class dbwork
+    public class dbwork
     {
         public string[] getdbparam(string filename)
         {
-            try
-            {
-                StreamReader reader = File.OpenText(filename);
-                string[] exit = new string[5];
-                int i = 0;
+            StreamReader reader = File.OpenText(filename);
+            string[] exit = new string[5];
+            int i = 0;
 
-                while ((exit[i] = reader.ReadLine()) != null)
-                {
-                    i++;
-                }
-                reader.Close();
-                return exit;
+            while ((exit[i] = reader.ReadLine()) != null)
+            {
+                i++;
             }
-            catch (Exception ex) { Console.Write(ex); return null; }
+            reader.Close();
+            return exit;
         }
 
-        public void setdbparam(string filename,int i, string param)
+        public void setdbparam(string filename, int i, string param)
         {
             try
             {
                 StreamReader reader = new StreamReader(filename);
-                string content=null, temp=null;
+                string content = null, temp = null;
 
-                for (int j = 0; j != i+1; j++)
+                for (int j = 0; j != i + 1; j++)
                 {
                     temp = reader.ReadLine();
-                    content = content+ temp;
+                    content = content + temp;
                     content = content + '\n';
                 }
 
                 reader.Close();
 
-                content = Regex.Replace(content,temp,param);
+                content = Regex.Replace(content, temp, param);
 
                 StreamWriter writer = new StreamWriter(filename);
                 writer.Write(content);
-                writer.Close();                 
+                writer.Close();
             }
-            catch (Exception) {}
+            catch (Exception) { }
         }
 
         public OleDbDataReader readdb(string dbaddress, string strAccessSelect)
@@ -94,16 +90,9 @@ namespace mssupport
             OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
             OleDbCommand cmd = new OleDbCommand(strAccessInsert, connection);
 
-            try
-            {
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("error from updatedb");
-            }
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
 
         public void insertdb(string dbaddress, string strAccessInsert)
@@ -119,7 +108,7 @@ namespace mssupport
             }
             catch (Exception ex)
             {
-                Console.WriteLine("error from insertdb:"+ex);
+                Console.WriteLine("error from insertdb:" + ex);
             }
         }
 
@@ -158,17 +147,10 @@ namespace mssupport
             OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
             OleDbCommand cmd = new OleDbCommand("SELECT Код FROM " + str, connection);
 
-            try
-            {
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            return true;
         }
 
         public void droptdforscandb(string dbaddress, string str)
@@ -188,22 +170,22 @@ namespace mssupport
                 Console.WriteLine("error from droptdforscandb");
             }
         }
+
         public void addtbforscandb(string dbaddress, string str)
         {
+            dbwork db = new dbwork();
+
+            if (db.tableexist(dbaddress, str)) { return; };
+
             str = "CREATE TABLE " + str + "(Код Integer, ip VARCHAR, grp VARCHAR)";
+
             OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
             OleDbCommand cmd = new OleDbCommand(str, connection);
 
-            try
-            {
                 connection.Open();
                 cmd.ExecuteNonQuery();
                 connection.Close();
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("error from addtbforscandb:");
-            }
+            
         }
     }
 }

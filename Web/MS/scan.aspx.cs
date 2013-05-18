@@ -22,11 +22,16 @@ public partial class scan : System.Web.UI.Page
         IPAddress fromip = null;
         IPAddress toip = null;
 
-        try
+        if (db.tableexist(dbaddress, "forscan"))
         {
-            db.addtbforscandb(dbaddress, "forscan");
+            db.droptdforscandb(dbaddress, "forscan");
         }
-        catch (Exception ex) {scanstate.Text=ex.ToString();}
+        else
+        { 
+            db.addtbforscandb(dbaddress, "forscan"); 
+        }
+
+
         try
         {
             fromip = IPAddress.Parse(scanrangefrombox.Text);
