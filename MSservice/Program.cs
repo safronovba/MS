@@ -13,8 +13,10 @@ namespace mssupport
             monitor m1 = new monitor();
             scan s1 = new scan();
             dbwork db = new dbwork();
+            string dbaddress=null;
 
-            string dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
+            try { dbaddress = db.getdbparam("config.txt").GetValue(0).ToString(); }
+            catch (System.IO.FileNotFoundException) { Console.WriteLine("Config file is not found"); Console.ReadKey(); return; }
 
             try 
             { 

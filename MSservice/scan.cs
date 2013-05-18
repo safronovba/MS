@@ -14,10 +14,16 @@ namespace mssupport
         public void scannow()
         {
             Console.WriteLine("Scan");
-            string dbaddress = "E:\\hosts.accdb";
+
+            Process MyProc = new Process();
             dbwork db = new dbwork();
             icmp temp = new icmp();
+
+            MyProc.StartInfo.FileName = "MSservice.exe";
+
+            string dbaddress = null;
             string tempip = null;
+            int errortimes = 0;
 
             Console.WriteLine("read cfg");
             dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
@@ -32,51 +38,63 @@ namespace mssupport
             Console.WriteLine("Start scan.");
             if (db.tableexist(dbaddress, "forscan"))
             {
-                Console.WriteLine("Table exists");
-                OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip,grp FROM forscan");
-
-                while (tempread.Read())
+                try
                 {
-                    Console.Write("Read next one: ");
-                    tempkod = Convert.ToInt32(tempread["Код"]);
-                    tempip = tempread["ip"].ToString();
-                    Console.WriteLine(tempip);
-                    tempgroup = tempread["grp"].ToString();
+                    Console.WriteLine("Table exists");
+                    OleDbDataReader tempread = db.readdb(dbaddress, "SELECT Код,ip,grp FROM forscan");
 
-                    if (db.doubleipcheck(dbaddress, tempip))
+                    while (tempread.Read())
                     {
-                        Console.WriteLine("Try to ping");
-                        if (temp.ping(tempip, 2))
+                        Console.Write("Read next one: ");
+                        tempkod = Convert.ToInt32(tempread["Код"]);
+                        tempip = tempread["ip"].ToString();
+                        Console.WriteLine(tempip);
+                        tempgroup = tempread["grp"].ToString();
+
+                        if (db.doubleipcheck(dbaddress, tempip))
                         {
-                            Console.WriteLine("New host avalible.\nTry to resolve hostname");
-                            tempname = temp.resolvename(tempip);
-                            if (tempname == tempip)
+                            Console.WriteLine("Try to ping");
+                            if (temp.ping(tempip, 2))
                             {
-                                Console.WriteLine("!New device with ip " + tempip + "\nWrite it to db.");
+                                Console.WriteLine("New host avalible.\nTry to resolve hostname");
+                                tempname = temp.resolvename(tempip);
+                                if (tempname == tempip)
+                                {
+                                    Console.WriteLine("!New device with ip " + tempip + "\nWrite it to db.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("!New device " + tempname + " with ip " + tempip + "\nWrite it to db.");
+                                }
+
+                                db.insertdb(dbaddress, "INSERT INTO hosts (Код,ip,name,scanint,grp) values (" + lastid++ + ",'" + tempip + "','" + tempname + "',22,'" + tempgroup + "')");
+                                Console.WriteLine("Done.\n");
                             }
                             else
                             {
-                                Console.WriteLine("!New device " + tempname + " with ip " + tempip + "\nWrite it to db.");
+                                Console.WriteLine("No icmp device at " + tempip + "\n");
                             }
-
-                            db.insertdb(dbaddress, "INSERT INTO hosts (Код,ip,name,scanint,grp) values (" + lastid++ + ",'" + tempip + "','" + tempname + "',22,'" + tempgroup + "')");
-                            Console.WriteLine("Done.\n");
                         }
                         else
                         {
-                            Console.WriteLine("No icmp device at " + tempip + "\n");
+                            Console.WriteLine("Host " + tempip + " not new\n");
                         }
                     }
-                    else
+                    Thread.Sleep(3000);
+
+                    MyProc.StartInfo.Arguments = "deltd";
+                    MyProc.Start();
+                }
+                catch (Exception ex)
+                {
+                    Console.Write("Ошибка tempread.Read()\n" + ex + "\n" + errortimes++ + " times already");
+                    if (errortimes > 3)
                     {
-                        Console.WriteLine("Host " + tempip + " not new\n");
+                        MyProc.StartInfo.Arguments = "scan";
+                        MyProc.Start();
+                        return;
                     }
                 }
-                Thread.Sleep(3000);
-                Process MyProc = new Process();
-                MyProc.StartInfo.FileName = "MSservice.exe";
-                MyProc.StartInfo.Arguments = "deltd";
-                MyProc.Start();
             }
         }
     }

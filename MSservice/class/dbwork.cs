@@ -12,7 +12,7 @@ public class dbwork
     public string[] getdbparam(string filename)
     {
         StreamReader reader = File.OpenText(filename);
-        string[] exit = new string[5];
+        string[] exit = new string[3];
         int i = 0;
 
         while ((exit[i] = reader.ReadLine()) != null)
@@ -20,7 +20,14 @@ public class dbwork
             i++;
         }
         reader.Close();
-        return exit;
+
+        if (exit[0].Contains("accdb")) 
+        { 
+            return exit; 
+        }
+        Console.WriteLine("Config file is corrupted");
+        Console.ReadKey(); 
+        return null;
     }
 
     public void setdbparam(string filename, int i, string param)
@@ -119,7 +126,7 @@ public class dbwork
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-        catch (OleDbException) { return false; }
+        catch (OleDbException) { if (str=="hosts") Console.WriteLine("DB does not exists"); return false; }
         return true;
     }
 

@@ -81,8 +81,8 @@ class monitor
             }
             catch (Exception ex)
             {
-                Console.Write("Ошибка tempread.Read()\n" + ex + "\n"+errortimes+" times already");
-                if (errortimes > 10)
+                Console.Write("Ошибка tempread.Read()\n" + ex + "\n"+errortimes++ +" times already");
+                if (errortimes > 3)
                 {
                     MyProc.StartInfo.Arguments = "check";
                     MyProc.Start();
