@@ -1,28 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="monitoring.aspx.cs" Inherits="monitoring" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="monitoring.aspx.cs" Inherits="monitoring" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" MasterPageFile="~/MasterPage.master" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
     <div>
-    
-        <meta http-equiv='Refresh' content='10; URL=/monitoring.aspx'/>
-        <a href="hostadd.aspx">Add new host</a>&nbsp;&nbsp;&nbsp;<a href="scan.aspx">Scan for hosts</a>&nbsp;&nbsp;&nbsp;<a href="list.aspx">Device list</a>&nbsp;&nbsp;&nbsp;
-        <a href="monitoring.aspx">State page</a> <br />
+
         <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Код" DataSourceID="AccessDataSource1" EmptyDataText="Нет записей для отображения." AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Код" DataSourceID="AccessDataSource1" EmptyDataText="Нет записей для отображения." AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" meta:resourcekey="GridView1Resource1">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="ip" HeaderText="ip" SortExpression="ip" />
-                <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
-                <asp:BoundField DataField="nowstate" HeaderText="nowstate" SortExpression="nowstate" />
-                <asp:BoundField DataField="lasterror" HeaderText="lasterror" SortExpression="lasterror" />
-                <asp:BoundField DataField="lastsucces" HeaderText="lastsucces" SortExpression="lastsucces" />
+                <asp:BoundField DataField="ip" HeaderText="ip" SortExpression="ip" meta:resourcekey="BoundFieldResource1" />
+                <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" meta:resourcekey="BoundFieldResource2" />
+                <asp:BoundField DataField="nowstate" HeaderText="nowstate" SortExpression="nowstate" meta:resourcekey="BoundFieldResource3" />
+                <asp:BoundField DataField="lasterror" HeaderText="lasterror" SortExpression="lasterror" meta:resourcekey="BoundFieldResource4" />
+                <asp:BoundField DataField="lastsucces" HeaderText="lastsucces" SortExpression="lastsucces" meta:resourcekey="BoundFieldResource5" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -61,8 +51,6 @@
             </UpdateParameters>
         </asp:AccessDataSource>
         <br />
-    
+
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

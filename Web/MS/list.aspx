@@ -1,31 +1,21 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="list.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="list.aspx.cs" Inherits="_Default" MasterPageFile="~/MasterPage.master" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
     <div>
-    
-        <a href="hostadd.aspx">Add new host</a>&nbsp;&nbsp;&nbsp;<a href="scan.aspx">Scan for hosts</a>&nbsp;&nbsp;&nbsp;<a href="list.aspx">Device list</a>&nbsp;&nbsp;&nbsp;
-        <a href="monitoring.aspx">State page</a>
+
         <br />
-        <br />
-        <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Код" DataSourceID="AccessDataSource1" EmptyDataText="Нет записей для отображения." ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Код" DataSourceID="AccessDataSource1" EmptyDataText="Нет записей для отображения." ForeColor="#333333" GridLines="None" meta:resourcekey="GridView1Resource1">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="Код" HeaderText="Код" ReadOnly="True" SortExpression="Код" />
-                <asp:BoundField DataField="ip" HeaderText="ip" SortExpression="ip" />
-                <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
-                <asp:BoundField DataField="scanint" HeaderText="scanint" SortExpression="scanint" />
-                <asp:BoundField DataField="nowstate" HeaderText="nowstate" SortExpression="nowstate" />
-                <asp:BoundField DataField="lasttime" HeaderText="lasttime" SortExpression="lasttime" />
-                <asp:BoundField DataField="grp" HeaderText="grp" SortExpression="grp" />
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                <asp:BoundField DataField="Код" HeaderText="Код" ReadOnly="True" SortExpression="Код" meta:resourcekey="BoundFieldResource1" />
+                <asp:BoundField DataField="ip" HeaderText="ip" SortExpression="ip" meta:resourcekey="BoundFieldResource2" />
+                <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" meta:resourcekey="BoundFieldResource3" />
+                <asp:BoundField DataField="scanint" HeaderText="scanint" SortExpression="scanint" meta:resourcekey="BoundFieldResource4" />
+                <asp:BoundField DataField="nowstate" HeaderText="nowstate" SortExpression="nowstate" meta:resourcekey="BoundFieldResource5" />
+                <asp:BoundField DataField="lasttime" HeaderText="lasttime" SortExpression="lasttime" meta:resourcekey="BoundFieldResource6" />
+                <asp:BoundField DataField="grp" HeaderText="grp" SortExpression="grp" meta:resourcekey="BoundFieldResource7" />
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" meta:resourcekey="CommandFieldResource1" />
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -67,8 +57,6 @@
                 <asp:Parameter Name="Код" Type="Int32" />
             </UpdateParameters>
         </asp:AccessDataSource>
-    
+
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

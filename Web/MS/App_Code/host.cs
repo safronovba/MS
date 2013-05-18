@@ -14,6 +14,7 @@ public class host
     private string lasterror;
     private string lastsucces;
     private string lasttime;
+    private string group;
 
     public host(string ip)
     {
@@ -35,6 +36,17 @@ public class host
         this.scanint = scanint;
     }
 
+    public host(string ip, string name, int scanint, string group)
+    {
+        this.ip = ip;
+        this.name = name;
+
+        if (scanint == 0) { scanint = 60; }
+        this.scanint = scanint;
+
+        this.group = group;
+    }
+
     public host(int id, string ip, int scanint, string nowstate, string lasterror, string lastsucces, string lasttime)
     {
         this.ip = ip;
@@ -54,7 +66,6 @@ public class host
     public string Ip
     {
         get { return ip; }
-        set { ip = Ip; }
     }
 
     public string Name
@@ -72,12 +83,17 @@ public class host
         get { return scanint; }
     }
 
+    public string Group
+    {
+        get { return group; }
+    }
+
     public bool timecheck()
     {
         double tempinterval = this.scanint;
         int left = 0, right = 1;
 
-        if (this.lasttime == null) { this.lasttime = DateTime.Now.ToString(); }
+        if ((this.lasttime == null) || (this.lasttime == "")) { return true; }
         left = (DateTime.Now.Hour * 60 + DateTime.Now.Minute) * 60 + DateTime.Now.Second;
         right = (System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Hour * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Minute) * 60 + System.DateTime.Parse(this.lasttime).AddSeconds(tempinterval).Second;
 

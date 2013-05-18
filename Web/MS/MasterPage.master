@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
 <!DOCTYPE html>
 
@@ -8,19 +8,17 @@
     <title></title>
 </head>
 <body>
-    <p>
+    <form id="form1" runat="server">
+    <div>
     
         <a href="hostadd.aspx">Add new host</a>&nbsp;&nbsp;&nbsp;<a href="scan.aspx">Scan for hosts</a>&nbsp;&nbsp;&nbsp;<a href="list.aspx">Device list</a>&nbsp;&nbsp;&nbsp;
         <a href="monitoring.aspx">State page</a>
-    </p>
-    <form id="form1" runat="server">
-        <p>
-            dbaddress:<asp:TextBox ID="addressbox" runat="server">Z:\hosts.accdb</asp:TextBox>
-        </p>
-    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
 
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-    
+            <asp:ContentPlaceHolder id="down" runat="server">
+    </asp:ContentPlaceHolder>
     </div>
     </form>
 </body>

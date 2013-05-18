@@ -61,39 +61,34 @@ public class icmp
 
     public bool ping(string ip, int re)
     {
+        int i = 0;
         PingReply Reply;
         byte[] Buffer = Encoding.ASCII.GetBytes(Data);
         try { Reply = Sender.Send(ip, Timeout, Buffer); }
-        catch (Exception ex)
+        catch (PingException ex)
         {
-            lastsuccess = DateTime.Now.ToString("T") + "\nОшибка: " + ex;
-            return false; ;
+            lastsuccess = "host " + ip + " is offline now";
+            lastsuccess = DateTime.Now.ToString("T") + ": Ошибка: " + ex.Message;
+            i++;
+            if (i > re) { return false; }
         }
-        if (Reply.Status == IPStatus.Success)
-        {
-            lastsuccess = DateTime.Now.ToString("T") + " - " + Reply.RoundtripTime + "мс";
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public bool ping(IPAddress ip, int re)
     {
+        int i=0;
         PingReply Reply;
         byte[] Buffer = Encoding.ASCII.GetBytes(Data);
         try { Reply = Sender.Send(ip, Timeout, Buffer); }
-        catch (Exception ex)
+        catch (PingException ex)
         {
             lastsuccess = "host " + ip + " is offline now";
             lastsuccess = DateTime.Now.ToString("T") + ": Ошибка: " + ex.Message;
-            return false;
+            i++;
+            if (i > re) { return false; }
         }
-        if (Reply.Status == IPStatus.Success)
-        {
-            lastsuccess = DateTime.Now.ToString("T") + " - " + Reply.RoundtripTime + "мс";
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public string ping(string ip)
@@ -114,23 +109,16 @@ public class icmp
         return lastsuccess;
     }
 
-    public void ping(string ip, bool unittest)
-    {
-        PingReply Reply;
-        byte[] Buffer = Encoding.ASCII.GetBytes(Data);
-        Reply = Sender.Send(ip, Timeout, Buffer);
-    }
-
     public string ping(IPAddress ip)
     {
         PingReply Reply;
         byte[] Buffer = Encoding.ASCII.GetBytes(Data);
         try { Reply = Sender.Send(ip, Timeout, Buffer); }
-        catch (Exception ex)
+        catch (PingException ex)
         {
             lastsuccess = "host " + ip + " is offline now";
             lastsuccess = DateTime.Now.ToString("T") + ": Ошибка: " + ex.Message;
-            return lastsuccess; ;
+            return lastsuccess;
         }
         if (Reply.Status == IPStatus.Success)
         {
