@@ -17,7 +17,7 @@ public partial class hostadd : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        dbaddress = temp.getdbparam((Request.PhysicalApplicationPath).ToString() + "app_data/config.txt").GetValue(1).ToString();
+        dbaddress = (Request.PhysicalApplicationPath).ToString() + "App_Data\\" + temp.getdbparam((Request.PhysicalApplicationPath).ToString() + "app_data/config.txt").GetValue(1).ToString();
     }
     protected void addbutton_Click(object sender, EventArgs e)
     {

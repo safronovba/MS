@@ -14,7 +14,7 @@ public class dbwork
     public string[] getdbparam(string filename)
     {
         StreamReader reader = File.OpenText(filename);
-        string[] exit = new string[4];
+        string[] exit = new string[10];
         int i = 0;
 
         while ((exit[i] = reader.ReadLine()) != null)
@@ -33,28 +33,21 @@ public class dbwork
     public void setdbparam(string filename, int i, string param)
     {
         StreamReader reader = new StreamReader(filename);
-        string content = null, temp = null;
+        string[] temp = new string[10];
+        int j = 0,max=0;
 
-
-
-        for (int j = 0; j != i + 1; j++)
+        while ((temp[j] = reader.ReadLine())!=null)
         {
-            temp = reader.ReadLine();
-            content = content + temp;
-            content = content + '\n';
+            j++; max++;
         }
-
         reader.Close();
 
-
         // todo:         Regex.Replace(param,"\\","\\");
-        try
-        {
-            content = Regex.Replace(content, temp, param);
-        }
-        catch (Exception) { }
+
+        temp[i] = Regex.Replace(temp[i], temp[i], param);
+
         StreamWriter writer = new StreamWriter(filename);
-        writer.Write(content);
+        for (j = 0; j < max; j++) { writer.WriteLine(temp[j]); }
         writer.Close();
     }
 
@@ -189,22 +182,10 @@ public class dbwork
 
     public void addmaindb(string dbaddress, string nowdirect)
     {
-        string str = null;
-
         dbwork db = new dbwork();
         if (db.tableexist(dbaddress, "hosts")) { return; };
 
         File.Copy(nowdirect+"/app_data/newdb.accdb", dbaddress);
-
-        str = "CREATE TABLE hosts (Код Integer, ip VARCHAR, name VARCHAR, mac VARCHAR, scanint INTEGER, nowstate VARCHAR, lasterror VARCHAR, lastsucces VARCHAR, lasttime DATETIME, grp VARCHAR)";
-
-        OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
-        OleDbCommand cmd = new OleDbCommand(str, connection);
-
-        connection.Open();
-        cmd.ExecuteNonQuery();
-        connection.Close();
-
     }
 
     public bool doubleipcheck(string dbaddress, string newip)

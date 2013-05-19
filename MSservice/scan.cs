@@ -28,7 +28,7 @@ class scan
         dbaddress = db.getdbparam("config.txt").GetValue(1).ToString();
 
         Console.WriteLine("Write new cfg");
-        db.setdbparam("config.txt", 1, "scanworknow");
+        db.setdbparam("config.txt", 2, "scanworknow");
 
         int lastid = db.findlastkod(dbaddress, "hosts") + 1;
         int tempkod = 0;

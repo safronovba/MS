@@ -4,17 +4,17 @@
 
 <p>
         <asp:Label ID="Label1" runat="server" meta:resourcekey="Label1Resource1" Text="База данных:"></asp:Label>
-        <asp:TextBox ID="addressbox" runat="server" meta:resourcekey="addressboxResource1" Width="133px" Text="E:\hosts.accdb"></asp:TextBox>
+        <asp:TextBox ID="addressbox" runat="server" meta:resourcekey="addressboxResource1" Width="133px" Text="hosts.accdb" OnTextChanged="addressbox_TextChanged"></asp:TextBox>
     </p>
 <p>
         <asp:Label ID="Label2" runat="server" Text="Эта база доступна и содержит таблицу с узлами."></asp:Label>
     </p>
     <div>
 
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Применить" meta:resourcekey="Button1Resource1" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Применить" meta:resourcekey="Button1Resource1" Width="100px" />
 
     &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Создать" Width="102px" />
+        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Создать" Width="100px" Visible="False" />
 
     </div>
 

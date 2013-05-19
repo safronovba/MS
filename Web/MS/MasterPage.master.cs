@@ -11,13 +11,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
     dbwork temp = new dbwork();
     private string masterdb = null;
 
-
     protected void Page_Load(object sender, EventArgs e)
     {
         Label2.Text = CultureInfo.CurrentCulture.DisplayName;
         try
         {
-            this.masterdb = temp.getdbparam((Request.PhysicalApplicationPath).ToString() + "app_data/config.txt").GetValue(1).ToString();
+            masterdb = temp.getdbparam((Request.PhysicalApplicationPath).ToString() + "app_data/config.txt").GetValue(1).ToString();
             Label1.Text = masterdb;
         }
         catch (Exception)

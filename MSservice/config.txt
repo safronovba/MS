@@ -1,3 +1,3 @@
-﻿config for console
-E:\hosts.accdb
+config for web 
+\\hm-fs\c$\Users\safronovba\YandexDisk\MS\Web\MS\App_Data\hosts.accdb
 scanstopnow

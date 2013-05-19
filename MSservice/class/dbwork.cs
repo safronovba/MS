@@ -14,7 +14,7 @@ public class dbwork
     public string[] getdbparam(string filename)
     {
         StreamReader reader = File.OpenText(filename);
-        string[] exit = new string[4];
+        string[] exit = new string[10];
         int i = 0;
 
         while ((exit[i] = reader.ReadLine()) != null)
@@ -23,9 +23,9 @@ public class dbwork
         }
         reader.Close();
 
-        if (exit[1].Contains("accdb")) 
-        { 
-            return exit; 
+        if (exit[1].Contains("accdb"))
+        {
+            return exit;
         }
         return null;
     }
@@ -33,28 +33,21 @@ public class dbwork
     public void setdbparam(string filename, int i, string param)
     {
         StreamReader reader = new StreamReader(filename);
-        string content = null, temp = null;
+        string[] temp = new string[10];
+        int j = 0, max = 0;
 
-
-
-        for (int j = 0; j != i + 1; j++)
+        while ((temp[j] = reader.ReadLine()) != null)
         {
-            temp = reader.ReadLine();
-            content = content + temp;
-            content = content + '\n';
+            j++; max++;
         }
-
         reader.Close();
 
-
         // todo:         Regex.Replace(param,"\\","\\");
-        try
-        {
-            content = Regex.Replace(content, temp, param);
-        }
-        catch (Exception) { }
+
+        temp[i] = Regex.Replace(temp[i], temp[i], param);
+
         StreamWriter writer = new StreamWriter(filename);
-        writer.Write(content);
+        for (j = 0; j < max; j++) { writer.WriteLine(temp[j]); }
         writer.Close();
     }
 

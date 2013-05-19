@@ -1,3 +1,3 @@
 config for web
-E:\hosts.accdb
+hosts.accdb
 scanstopnow

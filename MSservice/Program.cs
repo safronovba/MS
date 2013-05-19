@@ -50,7 +50,7 @@ namespace mssupport
                     }
                     catch (System.Data.OleDb.OleDbException) { Console.WriteLine("Can not delete"); return; }
                     Console.WriteLine("Complite.\nWrite new cfg");
-                    db.setdbparam("config.txt", 1, "scanstopnow");
+                    db.setdbparam("config.txt", 2, "scanstopnow");
                     Console.WriteLine("Done\nGood bye.");
                     Thread.Sleep(3000);
                     return;
