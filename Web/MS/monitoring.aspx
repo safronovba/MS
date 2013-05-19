@@ -47,7 +47,6 @@
                 <asp:Parameter Name="Код" Type="Int32" />
             </UpdateParameters>
         </asp:AccessDataSource>
-        <br />
 
     </div>
 </asp:Content>

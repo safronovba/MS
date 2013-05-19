@@ -2,8 +2,6 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <p>
-        &nbsp;</p>
 <p>
         <asp:Label ID="Label1" runat="server" meta:resourcekey="Label1Resource1" Text="База данных:"></asp:Label>
         <asp:TextBox ID="addressbox" runat="server" meta:resourcekey="addressboxResource1" Width="133px" Text="E:\hosts.accdb"></asp:TextBox>
