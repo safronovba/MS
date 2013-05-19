@@ -7,8 +7,12 @@ using System.Web.UI.WebControls;
 
 public partial class monitoring : System.Web.UI.Page
 {
+    dbwork temp = new dbwork();
+    string dbaddress = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        dbaddress = temp.getdbparam((Request.PhysicalApplicationPath).ToString() + "app_data/config.txt").GetValue(1).ToString();
+        AccessDataSource1.DataFile = dbaddress;
     }
 }

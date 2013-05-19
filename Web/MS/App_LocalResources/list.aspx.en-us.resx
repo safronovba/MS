@@ -117,71 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource1.FooterText" xml:space="preserve">
-    <value />
-  </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
     <value>id</value>
-  </data>
-  <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource2.FooterText" xml:space="preserve">
-    <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
     <value>ip</value>
   </data>
-  <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource3.FooterText" xml:space="preserve">
-    <value />
-  </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
     <value>name</value>
-  </data>
-  <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource4.FooterText" xml:space="preserve">
-    <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
     <value>interval</value>
   </data>
-  <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource5.FooterText" xml:space="preserve">
-    <value />
-  </data>
   <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
     <value>state</value>
-  </data>
-  <data name="BoundFieldResource6.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource6.FooterText" xml:space="preserve">
-    <value />
   </data>
   <data name="BoundFieldResource6.HeaderText" xml:space="preserve">
     <value>test time</value>
   </data>
-  <data name="BoundFieldResource7.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource7.FooterText" xml:space="preserve">
-    <value />
-  </data>
   <data name="BoundFieldResource7.HeaderText" xml:space="preserve">
     <value>group</value>
-  </data>
-  <data name="CommandFieldResource1.AccessibleHeaderText" xml:space="preserve">
-    <value />
   </data>
   <data name="CommandFieldResource1.CancelText" xml:space="preserve">
     <value>Cancel</value>
@@ -191,12 +146,6 @@
   </data>
   <data name="CommandFieldResource1.EditText" xml:space="preserve">
     <value>Edit</value>
-  </data>
-  <data name="CommandFieldResource1.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CommandFieldResource1.HeaderText" xml:space="preserve">
-    <value />
   </data>
   <data name="CommandFieldResource1.InsertText" xml:space="preserve">
     <value>Insert</value>
@@ -210,16 +159,7 @@
   <data name="CommandFieldResource1.UpdateText" xml:space="preserve">
     <value>Update</value>
   </data>
-  <data name="GridView1Resource1.Caption" xml:space="preserve">
-    <value />
-  </data>
   <data name="GridView1Resource1.EmptyDataText" xml:space="preserve">
     <value>No data.</value>
-  </data>
-  <data name="GridView1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PageResource1.Title" xml:space="preserve">
-    <value />
   </data>
 </root>

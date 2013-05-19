@@ -24,12 +24,12 @@ class monitor
         int tempkod = 0, errortimes = 0;
         int scanint;
 
-        dbaddress = db.getdbparam("config.txt").GetValue(0).ToString();
+        dbaddress = db.getdbparam("config.txt").GetValue(1).ToString();
 
         while (true)
         {
             //check scan
-            if (db.getdbparam("config.txt").GetValue(1).ToString() != "scanworknow")
+            if (db.getdbparam("config.txt").GetValue(2).ToString() != "scanworknow")
             {
                 if (db.tableexist(dbaddress, "forscan"))
                 {

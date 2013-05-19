@@ -6,13 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
+
 
 public class dbwork
 {
     public string[] getdbparam(string filename)
     {
         StreamReader reader = File.OpenText(filename);
-        string[] exit = new string[3];
+        string[] exit = new string[4];
         int i = 0;
 
         while ((exit[i] = reader.ReadLine()) != null)
@@ -21,20 +23,19 @@ public class dbwork
         }
         reader.Close();
 
-        if (exit[0].Contains("accdb"))
-        {
-            return exit;
+        if (exit[1].Contains("accdb")) 
+        { 
+            return exit; 
         }
-        Console.WriteLine("Config file is corrupted");
-        Console.ReadKey();
         return null;
     }
 
     public void setdbparam(string filename, int i, string param)
     {
-
         StreamReader reader = new StreamReader(filename);
         string content = null, temp = null;
+
+
 
         for (int j = 0; j != i + 1; j++)
         {
@@ -45,8 +46,13 @@ public class dbwork
 
         reader.Close();
 
-        content = Regex.Replace(content, temp, param);
 
+        // todo:         Regex.Replace(param,"\\","\\");
+        try
+        {
+            content = Regex.Replace(content, temp, param);
+        }
+        catch (Exception) { }
         StreamWriter writer = new StreamWriter(filename);
         writer.Write(content);
         writer.Close();
@@ -98,6 +104,8 @@ public class dbwork
         OleDbCommand cmd = new OleDbCommand("SELECT Код FROM " + str, connection);
         int lastnum = 0;
 
+        if (db.tableexist(dbaddress, str))
+        {
             connection.Open();
 
             OleDbDataReader readID = cmd.ExecuteReader(); // Выполняем команду
@@ -108,6 +116,8 @@ public class dbwork
             readID.Close();
             connection.Close();
             return lastnum;
+        }
+        return 1;
     }
 
     public bool tableexist(string dbaddress, string str)
@@ -122,7 +132,7 @@ public class dbwork
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-        catch (OleDbException) { if (str == "hosts") Console.WriteLine("DB does not exists"); return false; }
+        catch (OleDbException) { if (str=="hosts") Console.WriteLine("DB does not exists"); return false; }
         return true;
     }
 
@@ -145,30 +155,6 @@ public class dbwork
         }
         catch (OleDbException) { return false; }
         return true;
-    }
-
-    public string[] takehosts(string dbaddress)
-    {
-        Console.WriteLine("Loading ip from hosts..");
-        dbwork db = new dbwork();
-        OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
-        OleDbCommand cmd = new OleDbCommand("SELECT ip FROM hosts", connection);
-        int i = 0;
-
-        string[] hosts = new string[db.findlastkod(dbaddress, "hosts")];
-
-        connection.Open();
-        
-        OleDbDataReader read = cmd.ExecuteReader();
-        while (read.Read())
-        {
-            hosts[i] = read["ip"].ToString();
-            i++;
-        }
-        read.Close();
-        connection.Close();
-        return hosts;
-
     }
 
     public void droptdforscandb(string dbaddress, string str)
@@ -198,6 +184,69 @@ public class dbwork
         connection.Open();
         cmd.ExecuteNonQuery();
         connection.Close();
+
+    }
+
+    public void addmaindb(string dbaddress, string nowdirect)
+    {
+        string str = null;
+
+        dbwork db = new dbwork();
+        if (db.tableexist(dbaddress, "hosts")) { return; };
+
+        File.Copy(nowdirect+"/app_data/newdb.accdb", dbaddress);
+
+        str = "CREATE TABLE hosts (Код Integer, ip VARCHAR, name VARCHAR, mac VARCHAR, scanint INTEGER, nowstate VARCHAR, lasterror VARCHAR, lastsucces VARCHAR, lasttime DATETIME, grp VARCHAR)";
+
+        OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
+        OleDbCommand cmd = new OleDbCommand(str, connection);
+
+        connection.Open();
+        cmd.ExecuteNonQuery();
+        connection.Close();
+
+    }
+
+    public bool doubleipcheck(string dbaddress, string newip)
+    {
+        OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
+        OleDbCommand cmd = new OleDbCommand("SELECT ip FROM hosts", connection);
+        OleDbDataReader tempread = null;
+        dbwork db = new dbwork();
+
+        if (db.tableexist(dbaddress, "hosts"))
+        {
+            connection.Open();
+            tempread = cmd.ExecuteReader();
+            while (tempread.Read())
+            {
+                if (newip == tempread["ip"].ToString()) { return false; }
+            }
+        }
+        return true;
+    }
+
+    public string[] takehosts(string dbaddress)
+    {
+        Console.WriteLine("Loading ip from hosts..");
+        dbwork db = new dbwork();
+        OleDbConnection connection = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + dbaddress);
+        OleDbCommand cmd = new OleDbCommand("SELECT ip FROM hosts", connection);
+        int i = 0;
+
+        string[] hosts = new string[db.findlastkod(dbaddress, "hosts")];
+
+        connection.Open();
+
+        OleDbDataReader read = cmd.ExecuteReader();
+        while (read.Read())
+        {
+            hosts[i] = read["ip"].ToString();
+            i++;
+        }
+        read.Close();
+        connection.Close();
+        return hosts;
 
     }
 }

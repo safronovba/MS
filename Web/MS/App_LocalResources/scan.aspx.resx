@@ -120,53 +120,20 @@
   <data name="ButtonScanResource1.Text" xml:space="preserve">
     <value>Начать сканирование</value>
   </data>
-  <data name="ButtonScanResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="groupnameboxResource1.Text" xml:space="preserve">
-    <value>default</value>
-  </data>
   <data name="groupnameboxResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
     <value>Диапазон сканирования:</value>
   </data>
-  <data name="Label1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label2Resource1.Text" xml:space="preserve">
     <value>Повторных запросов:</value>
-  </data>
-  <data name="Label2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PageResource1.Title" xml:space="preserve">
-    <value />
   </data>
   <data name="retrycountboxResource1.Text" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="retrycountboxResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="scanrangefromboxResource1.Text" xml:space="preserve">
-    <value>10.0.0.1</value>
-  </data>
-  <data name="scanrangefromboxResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="scanrangetoboxResource1.Text" xml:space="preserve">
-    <value>10.0.0.4</value>
-  </data>
-  <data name="scanrangetoboxResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="scanstateResource1.Text" xml:space="preserve">
     <value>Нажмите "Начать сканирование"</value>
-  </data>
-  <data name="scanstateResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="Label3Resource1.Text" xml:space="preserve">
     <value>Группа:</value>

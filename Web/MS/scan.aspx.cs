@@ -11,13 +11,15 @@ using System.Data;
 
 public partial class scan : System.Web.UI.Page
 {
+    dbwork temp = new dbwork();
+    string dbaddress = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        dbaddress = temp.getdbparam((Request.PhysicalApplicationPath).ToString() + "app_data/config.txt").GetValue(1).ToString();
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string dbaddress = "E:\\hosts.accdb";
         dbwork db = new dbwork();
         IPAddress fromip = null;
         IPAddress toip = null;

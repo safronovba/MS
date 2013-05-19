@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 [TestClass]
 public class UnitTest1
 {
-    host newhost = new host("10.0.0.1");
+    host newhost = new host();
     icmp newicmp = new icmp();
     dbwork newdb = new dbwork();
     string dbaddress = null;
@@ -15,28 +15,28 @@ public class UnitTest1
     [ExpectedException(typeof(OleDbException))]
     public void DbAccessExceptionTest()  
     {
-        dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
+        dbaddress = newdb.getdbparam("config.txt").GetValue(1).ToString();
         newdb.tableexist(dbaddress, "forscan1", true);
     }
 
     [TestMethod]
     public void DbCreateTableTest()  
     {
-        dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
+        dbaddress = newdb.getdbparam("config.txt").GetValue(1).ToString();
         newdb.addtbforscandb(dbaddress, "forscan");
     }
 
     [TestMethod]
     public void DbAccessTest()
     {
-        dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
+        dbaddress = newdb.getdbparam("config.txt").GetValue(1).ToString();
         newdb.tableexist(dbaddress, "forscan", true);
     }
 
     [TestMethod]
     public void DbDeleteTableTest()
     {
-        dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
+        dbaddress = newdb.getdbparam("config.txt").GetValue(1).ToString();
         newdb.droptdforscandb(dbaddress, "forscan");
     }
 
@@ -57,7 +57,7 @@ public class UnitTest1
     [TestMethod]
     public void DbReadCFGTest()  
     {
-        dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
+        dbaddress = newdb.getdbparam("config.txt").GetValue(1).ToString();
     }
 
 
@@ -65,7 +65,7 @@ public class UnitTest1
     [ExpectedException(typeof(OleDbException))]
     public void DbUpdateTest()  
     {
-        dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
+        dbaddress = newdb.getdbparam("config.txt").GetValue(1).ToString();
         newdb.updatedb(dbaddress, "UPDATE forscan SET (Код='0', ip='0.0.0.0', grp=test) WHERE id=0");
     }
 
@@ -73,7 +73,7 @@ public class UnitTest1
     [ExpectedException(typeof(OleDbException))]
     public void DbUpdateExceptionTest()  
     {
-        dbaddress = newdb.getdbparam("config.txt").GetValue(0).ToString();
+        dbaddress = newdb.getdbparam("config.txt").GetValue(1).ToString();
         newdb.updatedb(dbaddress, "UPDATE forscan1 SET (Код='0', ip='0.0.0.0', grp=test) WHERE id=0");
     }
 

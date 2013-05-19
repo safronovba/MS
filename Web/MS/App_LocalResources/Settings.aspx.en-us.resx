@@ -117,25 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="addressboxResource1.Text" xml:space="preserve">
-    <value>Z:\hosts.accdb</value>
-  </data>
-  <data name="addressboxResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Button1Resource1.Text" xml:space="preserve">
     <value>Accept</value>
   </data>
-  <data name="Button1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
     <value>DB file:</value>
-  </data>
-  <data name="Label1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PageResource1.Title" xml:space="preserve">
-    <value />
   </data>
 </root>

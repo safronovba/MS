@@ -18,6 +18,7 @@ public class host
 
     public host() { }
 
+
     public host(string ip)
     {
         this.ip = ip;
@@ -105,7 +106,6 @@ public class host
         }
         return false;
     }
-
     public bool checkmatch(string ip, string[] oldhosts)
     {
         for (int i = 0; i < oldhosts.Length; i++)

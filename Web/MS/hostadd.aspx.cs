@@ -12,13 +12,15 @@ using System.Net.Sockets;
 
 public partial class hostadd : System.Web.UI.Page
 {
+    dbwork temp = new dbwork();
+    string dbaddress = null;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        dbaddress = temp.getdbparam((Request.PhysicalApplicationPath).ToString() + "app_data/config.txt").GetValue(1).ToString();
     }
     protected void addbutton_Click(object sender, EventArgs e)
     {
-        string dbaddress = "E:\\hosts.accdb";
         host temphost = new host(hostipform.Text, hostnameform.Text, System.Int32.Parse(hostscanint.Text), grouptextbox.Text);
         string strAccessSelect = "SELECT Код FROM hosts";
         int lastnum = 0;

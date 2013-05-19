@@ -15,7 +15,7 @@ namespace mssupport
             dbwork db = new dbwork();
             string dbaddress=null;
 
-            try { dbaddress = db.getdbparam("config.txt").GetValue(0).ToString(); }
+            try { dbaddress = db.getdbparam("config.txt").GetValue(1).ToString(); }
             catch (System.IO.FileNotFoundException) { Console.WriteLine("Config file is not found"); Console.ReadKey(); return; }
 
             try 

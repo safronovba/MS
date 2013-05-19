@@ -120,82 +120,25 @@
   <data name="addbuttonResource1.Text" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="addbuttonResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="clearbuttonResource1.Text" xml:space="preserve">
     <value>Clear</value>
-  </data>
-  <data name="clearbuttonResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="grouptextboxResource1.Text" xml:space="preserve">
-    <value>default</value>
-  </data>
-  <data name="grouptextboxResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hostipformResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hostipformResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hostnameformResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hostnameformResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="hostscanintResource1.Text" xml:space="preserve">
-    <value>60</value>
-  </data>
-  <data name="hostscanintResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
     <value>Host ip:</value>
   </data>
-  <data name="Label1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label2Resource1.Text" xml:space="preserve">
     <value>Host name:</value>
-  </data>
-  <data name="Label2Resource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="Label3Resource1.Text" xml:space="preserve">
     <value>Host group:</value>
   </data>
-  <data name="Label3Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label4Resource1.Text" xml:space="preserve">
     <value>Scan interval (s):</value>
-  </data>
-  <data name="Label4Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="PageResource1.Title" xml:space="preserve">
-    <value />
   </data>
   <data name="resolvebuttonResource1.Text" xml:space="preserve">
     <value>Resolve</value>
   </data>
-  <data name="resolvebuttonResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="resulttextboxResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="resulttextboxResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="testbuttonResource1.Text" xml:space="preserve">
     <value>Test</value>
-  </data>
-  <data name="testbuttonResource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>

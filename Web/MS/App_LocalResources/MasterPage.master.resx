@@ -120,31 +120,16 @@
   <data name="HyperLink1Resource1.Text" xml:space="preserve">
     <value>Добавить узел</value>
   </data>
-  <data name="HyperLink1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="HyperLink1Resource5.Text" xml:space="preserve">
     <value>Настройки</value>
-  </data>
-  <data name="HyperLink1Resource5.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="HyperLink2Resource1.Text" xml:space="preserve">
     <value>Сканирование</value>
   </data>
-  <data name="HyperLink2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="HyperLink3Resource1.Text" xml:space="preserve">
     <value>Список узлов</value>
   </data>
-  <data name="HyperLink3Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="HyperLink4Resource1.Text" xml:space="preserve">
     <value>Мониторинг</value>
-  </data>
-  <data name="HyperLink4Resource1.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>
